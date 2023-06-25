@@ -9,7 +9,7 @@ COPY john-1.9.0-jumbo-1.tar.gz /tmp/john/john-1.9.0-jumbo-1.tar.gz
 COPY john_params.h /tmp/john/
 COPY go_compile.sh /tmp/john/ 
 
-RUN  chmod a+x /tmp/go_compile.sh && cd tmp/john && ./go_compile.sh
+RUN  chmod a+x /tmp/john/go_compile.sh && cd tmp/john && ./go_compile.sh
 
 
 
