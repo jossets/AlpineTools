@@ -23,6 +23,19 @@ jobs:
         run: echo "Yolo" > ./john-min.zip
 
 
+      - name: another upload 
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FILE: ./john-min.zip
+        run: |
+          curl \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -H "Content-Type: $(file -b --mime-type $FILE)" \
+          --data-binary @$FILE \
+          "https://uploads.github.com/repos/jossets/AlpineTools/releases/Latest/assets?name=$(basename $FILE)"
+        shell: bash
+          
+          
       - name: Upload release 
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -32,8 +45,8 @@ jobs:
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer $GITHUB_TOKEN" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/jossets/AlpineTools/releases/Latest \
-          -d '{"tag_name":"Latest","target_commitish":"master","name":"Latest","body":"Alpine tools","draft":false,"prerelease":false}'
+          https://api.github.com/repos/jossets/AlpineTools/releases/tag/Latest \
+          -d '{"tag_name":"Latest","target_commitish":"main","name":"Latest","body":"Alpine tools","draft":false,"prerelease":false}'
         shell: bash
 
 
