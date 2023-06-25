@@ -32,7 +32,7 @@ jobs:
           -H "Authorization: token $GITHUB_TOKEN" \
           -H "Content-Type: $(file -b --mime-type $FILE)" \
           --data-binary @$FILE \
-          "https://uploads.github.com/repos/jossets/AlpineTools/releases/Latest/assets?name=$(basename $FILE)"
+          "https://uploads.github.com/repos/jossets/AlpineTools/releases/Latest/assets?name=john-min.zip"
         shell: bash
           
           
