@@ -25,21 +25,6 @@ jobs:
       - name: Get zip
         run: docker run --rm --entrypoint cat alpinejohn  /john-min.zip > ./john-min.zip
         
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            John compiled for Alpine 
-            - without CPU acceleration
-            - Can run in virtual env
-          draft: false
-          prerelease: false
-
       - name: upload linux artifact
         uses: actions/upload-release-asset@v1
         env:
