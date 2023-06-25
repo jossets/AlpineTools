@@ -9,10 +9,10 @@ JOHN_URL="https://www.openwall.com/john/k/${JOHN_VERSION}.tar.gz"
 JOHN_DIR="/opt/john-1.9.0-jumbo-1"
 
 # Extract sources
-tar zfx john/john-1.9.0-jumbo-1.tar.gz -C /opt/
+tar zfx john-1.9.0-jumbo-1.tar.gz -C /opt/
 
 # Copy patch
-cp /john/john_params.h $JOHN_DIR/src/params.h
+cp john_params.h $JOHN_DIR/src/params.h
 
 #WORKDIR $JOHN_DIR/src
 # Remove --enable-simd=sse4

@@ -13,20 +13,17 @@ on:
 
 jobs:
   build-john:
-    runs-on: alpine:latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install packages
-        run: ./john/go_install_packages.sh
+      - name: Compile in docker
+        run: cd john && docker build -t alpinejohn .
 
-      - name: Compile
-        run: ./john/go_compile.sh
+      - name: Get zip
+        run: docker run --rm --entrypoint cat alpinejohn  /tmp/john-min.zip > ./john-min.zip
         
-      - name: Make zip
-        run: ./john/go_make_zip.sh
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -41,3 +38,13 @@ jobs:
             - Can run in virtual env
           draft: false
           prerelease: false
+
+      - name: upload linux artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./john-min.zip
+          asset_name: ./john-min.zip
+          asset_content_type: application/gzip
