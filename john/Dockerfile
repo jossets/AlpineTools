@@ -1,4 +1,4 @@
-FROM: alpine:3.17
+FROM alpine:3.17
 
 
 RUN sed -i '/#http:\/\/dl-cdn.alpinelinux.org\/alpine\/v3.17\/community/c\http:\/\/dl-cdn.alpinelinux.org\/alpine\/v3.17\/community' /etc/apk/repositories
