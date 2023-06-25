@@ -22,7 +22,7 @@ jobs:
         run: cd john && docker build -t alpinejohn .
 
       - name: Get zip
-        run: docker run --rm --entrypoint cat alpinejohn  /tmp/john-min.zip > ./john-min.zip
+        run: docker run --rm --entrypoint cat alpinejohn  /john-min.zip > ./john-min.zip
         
       - name: Create Release
         id: create_release

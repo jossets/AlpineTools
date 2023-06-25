@@ -22,10 +22,14 @@ sh configure --disable-simd --disable-openmp --disable-opencl
 sed -i 's/JTR_ALIGN(\s64\s)\stypedef\sstruct/typedef\ struct\ JTR_ALIGN(\ 64\ )\ /g' blake2.h
 make -s clean Cflags=-DJOHN_SYSTEMWIDE=1 && make -sj4
 
-mkdir -p /usr/share/john
-cp -R $JOHN_DIR/run/* /usr/share/john/ && chmod -R a+rx /usr/share/john \
-&& cp -R $JOHN_DIR/run/* /usr/local/bin && chmod -R a+rx /usr/local/bin \
-&& mkdir /home/yolo/.john && chown yolo:yolo /home/yolo/.john \
-&& cp $JOHN_DIR/run/john.conf /home/yolo/.john/john.conf && chown yolo:yolo /home/yolo/.john/john.conf \
-&& rm -R $JOHN_DIR/src/
+#mkdir -p /usr/share/john
+#cp -R $JOHN_DIR/run/* /usr/share/john/ && chmod -R a+rx /usr/share/john \
+#cp -R $JOHN_DIR/run/* /usr/local/bin && chmod -R a+rx /usr/local/bin \
+#mkdir /home/yolo/.john && chown yolo:yolo /home/yolo/.john \
+#cp $JOHN_DIR/run/john.conf /home/yolo/.john/john.conf && chown yolo:yolo /home/yolo/.john/john.conf \
+#rm -R $JOHN_DIR/src/
+
+cd $JOHN_DIR/ 
+mv $JOHN_DIR/run $JOHN_DIR/john
+zip -r /john-min.zip john/
 
