@@ -22,6 +22,13 @@ jobs:
       - name: Gen content
         run: echo "Yolo" > ./john-min.zip
 
+      - name: Upload Release Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          gh release upload Latest ./john-min.zip
+
+
 
       - name: another upload 
         env:
