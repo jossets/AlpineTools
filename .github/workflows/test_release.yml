@@ -22,6 +22,11 @@ jobs:
       - name: Gen content
         run: echo "Yolo" > ./john-min.zip
 
+      - name: Get upload url
+        run:  |
+              upload_url=$(curl -sL https://api.github.com/repos/actions/checkout/releases/latest | jq -r '.upload_url')
+              echo UPLOAD_URL=$upload_url >> $GITHUB_ENV
+        shell: bash
 
       # ?name=john-min.zip
       - name: Upload artifact
@@ -29,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: https://uploads.github.com/repos/AlpineTools/releases/Latest
+          upload_url: ${{ env.UPLOAD_URL }}
           asset_path: ./john-min.zip
           asset_name: ./john-min.zip
           asset_content_type: application/gzip
