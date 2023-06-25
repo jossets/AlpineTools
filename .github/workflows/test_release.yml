@@ -29,7 +29,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: https://uploads.github.com/repos/AlpineTools/releases/Latest/assets
+          upload_url: https://uploads.github.com/repos/AlpineTools/releases/Latest
           asset_path: ./john-min.zip
           asset_name: ./john-min.zip
           asset_content_type: application/gzip
